@@ -60,6 +60,8 @@ var step = 0.01;
 var t = 0.0;
 var fps = 50;
 
+
+
 function drawCircle(id, cx, cy, r){
 
 	var left_right = [-10,10];
@@ -73,7 +75,7 @@ function drawCircle(id, cx, cy, r){
 	document.getElementById(id).setAttribute("fill","none");
 	document.getElementById(id).setAttribute("stroke","black");
 	document.getElementById(id).setAttribute("cx",((cx-left_right[0])/(left_right[1]-left_right[0])*width).toString());
-	document.getElementById(id).setAttribute("cy",((cy-down_up[0])/(down_up[1]-down_up[0])*height).toString());
+	document.getElementById(id).setAttribute("cy",((cy-down_up[1])/(down_up[0]-down_up[1])*height).toString());
 	document.getElementById(id).setAttribute("r",(r*50).toString());
 	
 	
@@ -98,7 +100,7 @@ function drawPoint(id, cx, cy){
 	document.getElementById(id).setAttribute("fill","blue");
 	document.getElementById(id).setAttribute("stroke","black");
 	document.getElementById(id).setAttribute("cx",((cx-left_right[0])/(left_right[1]-left_right[0])*width).toString());
-	document.getElementById(id).setAttribute("cy",((cy-down_up[0])/(down_up[1]-down_up[0])*height).toString());
+	document.getElementById(id).setAttribute("cy",((cy-down_up[1])/(down_up[0]-down_up[1])*height).toString());
 	document.getElementById(id).setAttribute("r",(5).toString());
 	
 	
@@ -119,9 +121,9 @@ function drawLine(id, x1, x2, y1 ,y2){
 	}
 	document.getElementById(id).setAttribute("stroke","blue");
 	document.getElementById(id).setAttribute("x1",((x1-left_right[0])/(left_right[1]-left_right[0])*width).toString());
-	document.getElementById(id).setAttribute("y1",((y1-down_up[0])/(down_up[1]-down_up[0])*height).toString());
+	document.getElementById(id).setAttribute("y1",((y1-down_up[1])/(down_up[0]-down_up[1])*height).toString());
 	document.getElementById(id).setAttribute("x2",((x2-left_right[0])/(left_right[1]-left_right[0])*width).toString());
-	document.getElementById(id).setAttribute("y2",((y2-down_up[0])/(down_up[1]-down_up[0])*height).toString());
+	document.getElementById(id).setAttribute("y2",((y2-down_up[1])/(down_up[0]-down_up[1])*height).toString());
 	
 	
 	
@@ -143,9 +145,9 @@ function drawRedLine(id, x1, x2, y1 ,y2){
 	}
 	document.getElementById(id).setAttribute("stroke","red");
 	document.getElementById(id).setAttribute("x1",((x1-left_right[0])/(left_right[1]-left_right[0])*width).toString());
-	document.getElementById(id).setAttribute("y1",((y1-down_up[0])/(down_up[1]-down_up[0])*height).toString());
+	document.getElementById(id).setAttribute("y1",((y1-down_up[1])/(down_up[0]-down_up[1])*height).toString());
 	document.getElementById(id).setAttribute("x2",((x2-left_right[0])/(left_right[1]-left_right[0])*width).toString());
-	document.getElementById(id).setAttribute("y2",((y2-down_up[0])/(down_up[1]-down_up[0])*height).toString());
+	document.getElementById(id).setAttribute("y2",((y2-down_up[1])/(down_up[0]-down_up[1])*height).toString());
 	
 	
 	
@@ -166,9 +168,9 @@ function drawAxis(id, x1, x2, y1 ,y2){
 	}
 	document.getElementById(id).setAttribute("stroke","black");
 	document.getElementById(id).setAttribute("x1",((x1-left_right[0])/(left_right[1]-left_right[0])*width).toString());
-	document.getElementById(id).setAttribute("y1",((y1-down_up[0])/(down_up[1]-down_up[0])*height).toString());
+	document.getElementById(id).setAttribute("y1",((y1-down_up[1])/(down_up[0]-down_up[1])*height).toString());
 	document.getElementById(id).setAttribute("x2",((x2-left_right[0])/(left_right[1]-left_right[0])*width).toString());
-	document.getElementById(id).setAttribute("y2",((y2-down_up[0])/(down_up[1]-down_up[0])*height).toString());
+	document.getElementById(id).setAttribute("y2",((y2-down_up[1])/(down_up[0]-down_up[1])*height).toString());
 	
 	
 
