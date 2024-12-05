@@ -1,0 +1,213 @@
+<html>
+<head>
+<title> Zasadnicze Twierdzenie Algebry </title>
+</head>
+<body>
+<input id = "radius_slider" type = "range" min="0.1" max="10" value="1" step ="0.01" oninput="changeR()"></input>
+<svg id = "kanwa" width = "1000" height = "1000"> 
+
+</svg>
+<script>
+function changeR(){
+	R = document.getElementById("radius_slider").value;
+	var cnt = 0;
+	var last = new Complex(0,0);
+	for(var tt = 0; tt < 2*Math.PI; tt+= step){
+		var zz = new Complex(R*Math.sin(tt), R*Math.cos(tt));
+		var ress = new Complex(0,0);
+		var degg = coefficients.length - 1;
+		powerss = new Array(coefficients.length).fill(new Complex(1,0));
+		for(var i = 1; i < coefficients.length; i++) powerss[i] = multiply(powerss[i-1],zz);
+		for(var i = 0; i <= degg; i++){
+			ress = add(ress, multiply(powerss[degg-i],coefficients[i]));
+		}
+		if(cnt >= 1){
+			drawLine("line_"+cnt.toString(), last.a, ress.a, last.b, ress.b);
+		}
+		//console.log(ress.a);
+		last = ress;
+		cnt+=1;
+	}
+
+}
+
+
+class Complex{
+
+constructor (a,b){
+this.a = a;
+this.b = b;
+}
+
+}
+
+function multiply(A,B){
+var C =  new Complex(A.a*B.a-A.b*B.b, A.b*B.a+A.a*B.b);
+return C;
+}
+function add(A,B){
+var C =  new Complex(A.a+B.a,A.b+B.b);
+return C;
+}
+function modulus(A){
+return Math.sqrt(A.a*A.a+A.b*A.b);
+}
+
+var coefficients = [new Complex(2,0), new Complex(1,1), new Complex(-1,1),new Complex(0,-1) ];
+
+var R = document.getElementById("radius_slider").value;
+var step = 0.01;
+var t = 0.0;
+var fps = 50;
+
+function drawCircle(id, cx, cy, r){
+
+	var left_right = [-10,10];
+	var down_up = [-10,10];
+	var width = 1000;
+	var height = 1000;
+	
+	if(document.getElementById(id) === null){
+		document.getElementById("kanwa").innerHTML+="<circle id = '"+id+"' cx ='0' cy ='0' r ='0'></circle> " ;
+	}
+	document.getElementById(id).setAttribute("fill","none");
+	document.getElementById(id).setAttribute("stroke","black");
+	document.getElementById(id).setAttribute("cx",((cx-left_right[0])/(left_right[1]-left_right[0])*width).toString());
+	document.getElementById(id).setAttribute("cy",((cy-down_up[0])/(down_up[1]-down_up[0])*height).toString());
+	document.getElementById(id).setAttribute("r",(r*50).toString());
+	
+	
+	
+	
+ 
+}
+
+
+
+function drawPoint(id, cx, cy){
+
+	var left_right = [-10,10];
+	var down_up = [-10,10];
+	var width = 1000;
+	var height = 1000;
+	
+	if(document.getElementById(id) === null){
+		document.getElementById("kanwa").innerHTML+="<circle id = '"+id+"' cx ='0' cy ='0' r ='0'></circle> " ;
+	
+	}
+	document.getElementById(id).setAttribute("fill","blue");
+	document.getElementById(id).setAttribute("stroke","black");
+	document.getElementById(id).setAttribute("cx",((cx-left_right[0])/(left_right[1]-left_right[0])*width).toString());
+	document.getElementById(id).setAttribute("cy",((cy-down_up[0])/(down_up[1]-down_up[0])*height).toString());
+	document.getElementById(id).setAttribute("r",(5).toString());
+	
+	
+	
+	
+ 
+}
+
+function drawLine(id, x1, x2, y1 ,y2){
+
+	var left_right = [-10,10];
+	var down_up = [-10,10];
+	var width = 1000;
+	var height = 1000;
+	
+	if(document.getElementById(id) === null){
+		document.getElementById("kanwa").innerHTML+="<line id = '"+id+"'></line> " ;
+	}
+	document.getElementById(id).setAttribute("stroke","blue");
+	document.getElementById(id).setAttribute("x1",((x1-left_right[0])/(left_right[1]-left_right[0])*width).toString());
+	document.getElementById(id).setAttribute("y1",((y1-down_up[0])/(down_up[1]-down_up[0])*height).toString());
+	document.getElementById(id).setAttribute("x2",((x2-left_right[0])/(left_right[1]-left_right[0])*width).toString());
+	document.getElementById(id).setAttribute("y2",((y2-down_up[0])/(down_up[1]-down_up[0])*height).toString());
+	
+	
+	
+	
+	
+ 
+}
+
+
+function drawRedLine(id, x1, x2, y1 ,y2){
+
+	var left_right = [-10,10];
+	var down_up = [-10,10];
+	var width = 1000;
+	var height = 1000;
+	
+	if(document.getElementById(id) === null){
+		document.getElementById("kanwa").innerHTML+="<line id = '"+id+"'></line> " ;
+	}
+	document.getElementById(id).setAttribute("stroke","red");
+	document.getElementById(id).setAttribute("x1",((x1-left_right[0])/(left_right[1]-left_right[0])*width).toString());
+	document.getElementById(id).setAttribute("y1",((y1-down_up[0])/(down_up[1]-down_up[0])*height).toString());
+	document.getElementById(id).setAttribute("x2",((x2-left_right[0])/(left_right[1]-left_right[0])*width).toString());
+	document.getElementById(id).setAttribute("y2",((y2-down_up[0])/(down_up[1]-down_up[0])*height).toString());
+	
+	
+	
+	
+	
+ 
+}
+
+function drawAxis(id, x1, x2, y1 ,y2){
+
+	var left_right = [-10,10];
+	var down_up = [-10,10];
+	var width = 1000;
+	var height = 1000;
+	
+	if(document.getElementById(id) === null){
+		document.getElementById("kanwa").innerHTML+="<line id = '"+id+"'></line> " ;
+	}
+	document.getElementById(id).setAttribute("stroke","black");
+	document.getElementById(id).setAttribute("x1",((x1-left_right[0])/(left_right[1]-left_right[0])*width).toString());
+	document.getElementById(id).setAttribute("y1",((y1-down_up[0])/(down_up[1]-down_up[0])*height).toString());
+	document.getElementById(id).setAttribute("x2",((x2-left_right[0])/(left_right[1]-left_right[0])*width).toString());
+	document.getElementById(id).setAttribute("y2",((y2-down_up[0])/(down_up[1]-down_up[0])*height).toString());
+	
+	
+
+}
+drawAxis("axisOX",-10,10,0,0);
+drawAxis("axisOY",0,0,-10,10);
+
+changeR();
+var Intervalid = setInterval(() => 
+{
+	t+=step;
+	var z = new Complex(R*Math.sin(t), R*Math.cos(t));
+	var last = new Complex(0,0);
+	var res = new Complex(0,0);
+	var deg = coefficients.length - 1;
+	powers = new Array(coefficients.length).fill(new Complex(1,0));
+	for(var i = 1; i < coefficients.length; i++) powers[i] = multiply(powers[i-1],z);
+	
+	for(var i = 0; i <= deg; i++){
+		drawCircle("circle_"+i.toString(),res.a, res.b, modulus(coefficients[i])*R**(deg-i));
+		res = add(res, multiply(powers[deg-i],coefficients[i]));
+		drawRedLine("handle_"+i.toString(),last.a, res.a, last.b , res.b);
+		last =res;
+	}
+	drawPoint("point", res.a,res.b);
+
+
+
+
+
+
+
+
+
+}
+,1000/fps);
+
+
+
+</script>
+</body>
+</html>
